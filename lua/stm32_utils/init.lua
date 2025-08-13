@@ -1,6 +1,6 @@
 local M = {}
 
--- Base command. Used for debugging, flashing, etci
+-- Base command. Used for debugging, flashing, etc.
 CLI_COMMAND = "STM32_Programmer_CLI"
 
 function M.setup(opts)
@@ -10,7 +10,7 @@ function M.setup(opts)
 		end
 	end
 
-	-- Checks if user has STM32_Programmer_CLI installed via calling the command and checking the result 
+	-- Checks if user has STM32_Programmer_CLI installed via calling the command and checking the result.
  	executable_exists = pcall(function() vim.system({CLI_COMMAND}, {text=true}):wait() end)
 
 	if not executable_exists then
@@ -18,12 +18,12 @@ function M.setup(opts)
 
 	end
 
-	-- Regester all user commands
-	RegesterCommands()
+	-- Register all user commands.
+	RegisterCommands()
 end
 
 
-function RegesterCommands()
+function RegisterCommands()
 	-- All user commands follow the format of "S32<DESCRIPTION>"
 	vim.api.nvim_create_user_command('S32ListDevices', function() M.get_targets_uart() end, {})
 end
